@@ -17,9 +17,9 @@ function App() {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-      axios.get('http://127.0.0.1:8000/api/example/')
-          .then(response => setData(response.data))
-          .catch(error => console.error('Error fetching data:', error));
+    axios.get('http://127.0.0.1:8000/api/colors/')
+        .then(response => setData(response.data))
+        .catch(error => console.error('Error fetching data:', error));
   }, []);
   
   useEffect(() => {
@@ -78,6 +78,15 @@ function App() {
   const changeColor = () => {
     const newColor = `#${Math.floor(Math.random() * 16777215).toString(16)}`;
     dispatch(setTorusColor(newColor));
+    
+    axios.post('http://127.0.0.1:8000/api/colors/', { color: newColor })
+        .then(() => {
+            // Refresh the list of colors after adding a new one
+            axios.get('http://127.0.0.1:8000/api/colors/')
+                .then(response => setData(response.data))
+                .catch(error => console.error('Error fetching data:', error));
+        })
+        .catch(error => console.error('Error saving color:', error));
   };
   
   return (
@@ -86,14 +95,17 @@ function App() {
       <button onClick={changeColor} style={{ position: 'absolute', top: '10px', left: '10px' }}>
         Change Torus Color
       </button>
-      <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-        <h1>Data from Django</h1>
+      <div style={{ position: 'absolute', top: '50px', left: '10px' }}>
+        <h1>Saved Colors</h1>
         <ul>
             {data.map((item: any) => (
-                <li key={item.id}>{item.name}</li>
+                <li key={item.id} style={{ cursor: 'pointer', color: item.color }} 
+                    onClick={() => dispatch(setTorusColor(item.color))}>
+                    {item.color}
+                </li>
             ))}
         </ul>
-      </div>
+    </div>
     </>
   )
 }
