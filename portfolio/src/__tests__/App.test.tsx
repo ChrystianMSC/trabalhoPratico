@@ -10,7 +10,6 @@ import store from '../redux/store';
 
 jest.mock('axios');
 import axios from 'axios';
-import { useDispatch } from 'react-redux';
 
 jest.mock('three', () => {
     const originalModule = jest.requireActual('three');
