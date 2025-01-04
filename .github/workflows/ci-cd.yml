@@ -11,7 +11,10 @@ on:
 jobs:
   frontend:
     name: Build and Test Frontend
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
 
     steps:
       - name: Checkout Code
@@ -41,7 +44,10 @@ jobs:
           path: frontend/dist
 
   backend:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
     needs: frontend
     steps:
       - name: Checkout code
