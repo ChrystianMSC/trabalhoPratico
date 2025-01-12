@@ -46,8 +46,8 @@ function App() {
       torusRef.current = torus;
       scene.add(torus);
   
-      const pointLight = new THREE.PointLight(0xffffff, 100);
-      pointLight.position.set(0, 0, 0);
+      const pointLight = new THREE.PointLight(0xffffff, 10000);
+      pointLight.position.set(20, 20, 20);
   
       const ambientLight = new THREE.AmbientLight(0xffffff);
       scene.add(pointLight, ambientLight);
