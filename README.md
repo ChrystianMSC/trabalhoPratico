@@ -4,6 +4,9 @@
 
 Autor: Chrystian Martins Soares Costa
 
+![Gravando 2025-01-04 145920](https://github.com/user-attachments/assets/375090cb-4793-40aa-afe0-75e0ba9f2844)
+
+
 Este projeto é uma aplicação web interativa que permite a visualização de um objeto 3D em um grid na tela, utilizando **React**, **TypeScript**, **Vite**, e **Three.js**. O objetivo principal é permitir que os usuários interajam com o objeto 3D, alterando sua cor e armazenando essas cores em um banco de dados para acessos futuros.
 
 ## Funcionalidades
